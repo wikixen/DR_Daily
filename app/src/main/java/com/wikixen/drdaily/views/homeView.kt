@@ -30,10 +30,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat.getString
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.rememberAsyncImagePainter
-import com.wikixen.drdaily.R
 import com.wikixen.drdaily.models.Article
 import com.wikixen.drdaily.viewModels.SearchView
 
@@ -105,11 +103,6 @@ fun NewsCard(
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        Column {
-            Text(
-                text = "Test: "
-            )
-        }
         Box(modifier = Modifier.height(200.dp)){
             Image(
                 painter = rememberAsyncImagePainter(article.urlToImage),

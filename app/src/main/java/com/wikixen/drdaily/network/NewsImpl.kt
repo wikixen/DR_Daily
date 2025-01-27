@@ -1,6 +1,6 @@
 package com.wikixen.drdaily.network
 
-import com.wikixen.drdaily.API_KEY
+import com.wikixen.drdaily.BuildConfig
 import com.wikixen.drdaily.models.Article
 import com.wikixen.drdaily.models.News
 import io.ktor.client.HttpClient
@@ -31,6 +31,7 @@ class NewsImpl(private val client: HttpClient): NewsService {
     }
 
     companion object {
-        val BASE_URL = "https://newsapi.org/v2/everything?q=dominican+republic&apiKey=$API_KEY"
+        private const val API_KEY = BuildConfig.API_KEY
+        const val BASE_URL = "https://newsapi.org/v2/everything?q=dominican+republic&apiKey=$API_KEY"
     }
 }

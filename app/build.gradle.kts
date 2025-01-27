@@ -48,6 +48,7 @@ android {
     }
     buildFeatures {
         compose = true
+        android.buildFeatures.buildConfig = true
     }
     packaging {
         resources.excludes.add("META-INF/INDEX.LIST")
