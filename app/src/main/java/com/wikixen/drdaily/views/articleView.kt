@@ -24,10 +24,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.rememberAsyncImagePainter
 import com.wikixen.drdaily.R
-import com.wikixen.drdaily.data.Article
+import com.wikixen.drdaily.models.Article
 
+
+// ArticleView is the screen that is shown when an article is clicked
 @Composable
-fun ArticleScreen(
+fun ArticleView(
     article: Article,
     navigateToHome: () -> Unit
 ) {
@@ -48,6 +50,7 @@ fun ArticleScreen(
                 contentScale = ContentScale.Fit,
             )
         }
+        // Column below is for the text of the Article
         Column(modifier = Modifier
             .padding(horizontal = 40.dp, vertical = 20.dp)
         ) {

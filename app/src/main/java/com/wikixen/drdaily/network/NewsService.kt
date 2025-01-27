@@ -1,6 +1,6 @@
 package com.wikixen.drdaily.network
 
-import com.wikixen.drdaily.data.Article
+import com.wikixen.drdaily.models.Article
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation

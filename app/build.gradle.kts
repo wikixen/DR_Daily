@@ -1,4 +1,5 @@
-import com.android.build.api.dsl.Packaging
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -6,6 +7,9 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     kotlin("plugin.serialization")
 }
+
+val apiKey: String = gradleLocalProperties(rootDir, providers)
+    .getProperty("api_key")
 
 android {
     namespace = "com.wikixen.drdaily"
@@ -19,6 +23,11 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+
+        buildConfigField("String","API_KEY","\"${properties.getProperty("api_key")}\"")
     }
 
     buildTypes {

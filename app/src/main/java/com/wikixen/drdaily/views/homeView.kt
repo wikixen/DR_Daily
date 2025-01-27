@@ -30,35 +30,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.core.content.ContextCompat.getString
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.rememberAsyncImagePainter
-import com.wikixen.drdaily.data.Article
-import com.wikixen.drdaily.data.News
-import com.wikixen.drdaily.data.sampleNews
-import com.wikixen.drdaily.network.NewsService
-import io.ktor.client.*
-import io.ktor.client.call.body
-import io.ktor.client.engine.android.*
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.request.get
-import io.ktor.serialization.kotlinx.json.json
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.runBlocking
-import java.net.InetSocketAddress
-import java.net.Proxy
+import com.wikixen.drdaily.R
+import com.wikixen.drdaily.models.Article
+import com.wikixen.drdaily.viewModels.SearchView
 
 
 @Composable
-fun HomeScreen(
+fun HomeView(
     navigateToArticle: () -> Unit
 ) {
     val viewModel = viewModel<SearchView>()
@@ -109,53 +90,6 @@ fun HomeScreen(
     }
 }
 
-
-// SearchView allows for the searching of articles
-class SearchView: ViewModel() {
-//    val client = HttpClient(Android) {
-//        install(ContentNegotiation) {
-//            json()
-//        }
-//    }
-
-//    suspend fun getNews(): List<Article>? {
-//        val response = client.get(BASE_URL)
-//        return response.body<News?>()?.articles
-//    }
-
-    private val client = NewsService.create()
-
-    private val _searchText = MutableStateFlow("")
-    val searchText = _searchText.asStateFlow()
-
-    private val _isSearching = MutableStateFlow(false)
-    val isSearching = _isSearching.asStateFlow()
-
-    private val _articles = runBlocking { MutableStateFlow(sampleNews.articles) }
-//    private val _articles = runBlocking { MutableStateFlow(getNews()) }
-    val articles = searchText
-        .onEach { _isSearching.update { true } }
-        .combine(_articles) { text, articles ->
-            if (text.isBlank()){
-                articles
-            } else {
-                articles?.filter {
-                    it.matchSearchQuery(text)
-                }
-            }
-        }
-        .onEach { _isSearching.update { false } }
-        .stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(5000),
-            _articles.value
-        )
-    fun onSearchTextChange(text: String) {
-        _searchText.value = text
-    }
-}
-
-
 // NewsCard takes an article from the NewsAPI and formats it into a clickable card
 @Composable
 fun NewsCard(
@@ -171,6 +105,11 @@ fun NewsCard(
             .fillMaxWidth()
             .padding(16.dp)
     ) {
+        Column {
+            Text(
+                text = "Test: "
+            )
+        }
         Box(modifier = Modifier.height(200.dp)){
             Image(
                 painter = rememberAsyncImagePainter(article.urlToImage),

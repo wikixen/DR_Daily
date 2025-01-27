@@ -1,13 +1,6 @@
-package com.wikixen.drdaily.data
+package com.wikixen.drdaily.models
 
 import kotlinx.serialization.Serializable
-
-@Serializable
-data class News(
-    val articles: List<Article>,
-    val status: String,
-    val totalResults: Int
-)
 
 @Serializable
 data class Article(
@@ -32,9 +25,3 @@ data class Article(
         }
     }
 }
-
-@Serializable
-data class Source(
-    val id: String,
-    val name: String
-)

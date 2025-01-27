@@ -9,10 +9,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.wikixen.drdaily.data.sampleArticle
 import com.wikixen.drdaily.ui.theme.DRDailyTheme
-import com.wikixen.drdaily.views.ArticleScreen
-import com.wikixen.drdaily.views.HomeScreen
+import com.wikixen.drdaily.views.ArticleView
+import com.wikixen.drdaily.views.HomeView
 
 
 object Routes {
@@ -33,14 +32,14 @@ class MainActivity : ComponentActivity() {
                     startDestination = Routes.HOME_SCREEN
                 ) {
                     composable(route = Routes.HOME_SCREEN){
-                        HomeScreen(
+                        HomeView(
                             navigateToArticle = {
                                 navController.navigate(Routes.ARTICLE_SCREEN)
                             }
                         )
                     }
                     composable(route = Routes.ARTICLE_SCREEN) {
-                        ArticleScreen(
+                        ArticleView(
                             article = sampleArticle,
                             navigateToHome = {
                                 navController.popBackStack()

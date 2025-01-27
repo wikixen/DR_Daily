@@ -1,4 +1,8 @@
-package com.wikixen.drdaily.data
+package com.wikixen.drdaily
+
+import com.wikixen.drdaily.models.Article
+import com.wikixen.drdaily.models.News
+import com.wikixen.drdaily.models.Source
 
 val sampleNews = News(
     articles = listOf(
