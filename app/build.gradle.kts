@@ -64,17 +64,19 @@ android {
 }
 
 dependencies {
+    // OkHttp
+    implementation(libs.logging.interceptor)
+
+    // Moshi for JSON parsing
+    implementation(libs.moshi)
+    implementation(libs.squareup.moshi.kotlin)
+    implementation(libs.converter.moshi.v2110)
+
+    // Retrofit
+    implementation(libs.retrofit)
+
     // Log
     implementation(libs.ch.logback.classic)
-
-    // JSON Parsing stuff
-    implementation(libs.ktor.client.content.negotiation)
-    implementation(libs.ktor.serialization.kotlinx.json)
-    implementation(libs.kotlinx.serialization.json.v180)
-
-    // ktor for getting json from API
-    implementation(libs.ktor.client.android.v303)
-    implementation(libs.ktor.client.core)
 
     // Coil for loading image urls as painters
     implementation(libs.coil.compose)

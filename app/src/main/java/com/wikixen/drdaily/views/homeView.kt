@@ -75,10 +75,10 @@ fun HomeView(
                 modifier = Modifier
                     .fillMaxSize()
             ) {
-                if (articles?.isNotEmpty() == true) {
-                    items(articles!!.size) {
+                if (articles.isNotEmpty()){
+                    items(articles.size) {
                         NewsCard(
-                            articles!![it],
+                            articles[it],
                             navigateToArticle
                         )
                     }
