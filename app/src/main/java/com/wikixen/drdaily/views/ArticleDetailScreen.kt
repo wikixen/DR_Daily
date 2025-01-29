@@ -44,8 +44,8 @@ fun ArticleDetailScreen(
                 }
             )
             Image(
-                painter = rememberAsyncImagePainter(article.urlToImage),
-                contentDescription = article.description,
+                painter = rememberAsyncImagePainter(article.urlToImage ?: ""),
+                contentDescription = article.description ?: "",
                 contentScale = ContentScale.Fit,
             )
         }
@@ -54,27 +54,28 @@ fun ArticleDetailScreen(
             .padding(horizontal = 40.dp, vertical = 20.dp)
         ) {
             Text(
-                text = article.title,
+                text = article.title ?: "No title provided",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = article.description,
-
+                text = article.description ?: "",
                 fontSize = 12.sp,
             )
             Text(
-                text = "By ${article.author}",
+                text = "By ${article.author ?: "No author provided"}",
                 fontSize = 11.sp,
                 fontStyle = FontStyle.Italic,
             )
             Text(
-                text = article.publishedAt.split('T')[0] + " " + article.publishedAt.split('T')[1].substring(0,5)+" UTC",
+                text = (article.publishedAt?.split('T')?.get(0) ?: "") + " " + (article.publishedAt?.split('T')
+                    ?.get(1)
+                    ?.substring(0,5) ?: "") +" UTC",
                 fontSize = 11.sp,
                 fontStyle = FontStyle.Italic,
             )
             Text(
-                text = article.content,
+                text = article.content ?: "No content provided",
                 fontSize = 12.sp,
                 color = Color.Black
             )
@@ -82,15 +83,15 @@ fun ArticleDetailScreen(
                 buildAnnotatedString {
                     withLink(
                         LinkAnnotation.Url(
-                            url = article.url,
+                            url = article.url ?: "",
                             TextLinkStyles(style = SpanStyle(
                                 color = Color.Gray,
                                 fontStyle = FontStyle.Italic,
-                                fontSize = 12.sp)
+                                fontSize = 16.sp)
                             )
                         )
                     ) {
-                        append("Read the original article on ${article.source.name}")
+                        append("Read the original article on ${article.source.name ?: ""}")
                     }
                 },
             )

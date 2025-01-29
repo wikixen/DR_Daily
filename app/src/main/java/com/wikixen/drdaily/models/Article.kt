@@ -4,15 +4,16 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Article(
-    val author: String,
-    val content: String,
-    val description: String,
-    val publishedAt: String,
+    val author: String?,
+    val content: String?,
+    val description: String?,
+    val publishedAt: String?,
     val source: Source,
-    val title: String,
-    val url: String,
-    val urlToImage: String
+    val title: String?,
+    val url: String?,
+    val urlToImage: String?
 ) {
+
     fun matchSearchQuery(query: String): Boolean {
         val entries = listOf(
             author,
@@ -21,7 +22,7 @@ data class Article(
         )
 
         return entries.any {
-            it.contains(query, ignoreCase = true)
+            it?.contains(query, ignoreCase = true) ?: it.isNullOrEmpty()
         }
     }
 }

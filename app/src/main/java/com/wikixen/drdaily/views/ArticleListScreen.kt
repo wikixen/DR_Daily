@@ -89,8 +89,8 @@ fun ArticleListScreen(
                     ) {
                         Box(modifier = Modifier.height(200.dp)){
                             Image(
-                                painter = rememberAsyncImagePainter(articleList[article].urlToImage),
-                                contentDescription = articleList[article].description,
+                                painter = rememberAsyncImagePainter(articleList[article].urlToImage ?: "NaN"),
+                                contentDescription = articleList[article].description ?: "No description provided",
                                 contentScale = ContentScale.Crop
                             )
                             Box (
@@ -111,12 +111,12 @@ fun ArticleListScreen(
                             ) {
                                 Column {
                                     Text(
-                                        text = articleList[article].title,
+                                        text = articleList[article].title ?: "Title Not Listed",
                                         fontSize = 16.sp,
                                         color = Color.White,
                                     )
                                     Text(
-                                        text = "By ${articleList[article].author}",
+                                        text = "By ${articleList[article].author ?: "Author Not Listed"}",
                                         fontSize = 10.sp,
                                         color = Color.White,
                                     )
@@ -129,57 +129,3 @@ fun ArticleListScreen(
         }
     }
 }
-
-
-//@Composable
-//fun NewsCard(
-//    article: Article,
-//    navigateToArticle: (Article) -> Unit,
-//    modifier: Modifier = Modifier
-//) {
-//    Card(
-//        shape = RoundedCornerShape(10.dp),
-//        elevation = CardDefaults.cardElevation(10.dp),
-//        onClick = navigateToArticle(article),
-//        modifier = modifier
-//            .fillMaxWidth()
-//            .padding(16.dp)
-//    ) {
-//        Box(modifier = Modifier.height(200.dp)){
-//            Image(
-//                painter = rememberAsyncImagePainter(article.urlToImage),
-//                contentDescription = article.description,
-//                contentScale = ContentScale.Crop
-//            )
-//            Box (
-//                modifier = Modifier
-//                    .fillMaxSize()
-//                    .background(
-//                        Brush.verticalGradient(
-//                            colors = listOf(Color.Transparent, Color.Black),
-//                            startY = 100f
-//                        )
-//                    )
-//            )
-//            Box(
-//                contentAlignment = Alignment.BottomStart,
-//                modifier = Modifier
-//                    .fillMaxSize()
-//                    .padding(start = 10.dp, bottom = 5.dp)
-//            ) {
-//                Column {
-//                    Text(
-//                        text = article.title,
-//                        fontSize = 16.sp,
-//                        color = Color.White,
-//                        )
-//                    Text(
-//                        text = "By ${article.author}",
-//                        fontSize = 10.sp,
-//                        color = Color.White,
-//                        )
-//                }
-//            }
-//        }
-//    }
-//}
