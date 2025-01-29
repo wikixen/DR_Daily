@@ -26,10 +26,9 @@ import coil3.compose.rememberAsyncImagePainter
 import com.wikixen.drdaily.R
 import com.wikixen.drdaily.models.Article
 
-
 // ArticleView is the screen that is shown when an article is clicked
 @Composable
-fun ArticleView(
+fun ArticleDetailScreen(
     article: Article,
     navigateToHome: () -> Unit
 ) {

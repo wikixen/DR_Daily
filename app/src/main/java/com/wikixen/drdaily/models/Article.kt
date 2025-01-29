@@ -1,7 +1,9 @@
 package com.wikixen.drdaily.models
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Article(
-    val id: Int,
     val author: String,
     val content: String,
     val description: String,

@@ -64,6 +64,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.kotlinx.serialization.json.v180)
+
     // OkHttp
     implementation(libs.logging.interceptor)
 

@@ -2,8 +2,6 @@ package com.wikixen.drdaily.viewModels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wikixen.drdaily.models.Article
-import com.wikixen.drdaily.network.NewsAPIService
 import com.wikixen.drdaily.network.RetroClient
 import com.wikixen.drdaily.sampleNews
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,8 +11,6 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 // SearchView allows for the searching of articles
 class SearchView: ViewModel() {
@@ -33,10 +29,10 @@ class SearchView: ViewModel() {
 //        }
 //    }
 
-    private val _articles= MutableStateFlow(sampleNews.articles)
-    val articles = searchText
+    private val _articleList= MutableStateFlow(sampleNews.articles)
+    val articleList = searchText
         .onEach { _isSearching.update { true } }
-        .combine(_articles) { text, articles ->
+        .combine(_articleList) { text, articles ->
             if (text.isBlank()){
                 articles
             } else {
@@ -49,14 +45,14 @@ class SearchView: ViewModel() {
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000),
-            _articles.value
+            _articleList.value
         )
     fun onSearchTextChange(text: String) {
         _searchText.value = text
     }
 
     private suspend fun getNews() {
-        _articles.value = RetroClient.newsAPI.getNews().articles.toList()
+        _articleList.value = RetroClient.newsAPI.getNews().articles.toList()
 
     }
 }

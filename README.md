@@ -3,5 +3,5 @@ DR Daily is a demo app which shows all new articles about the Dominican Republic
 The app uses jetpack compose, Ktor for client requests, & the NewsAPI from [NewsAPI.org]([url](https://newsapi.org/)) for news articles.
 
 # TODO
-- [] Figure out how to make every card send you to a different article 
+- [X] Figure out how to make every card send you to a different article 
 - [] Fix API retrieval(It says something about a null in article.source)
